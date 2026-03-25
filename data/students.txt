@@ -1,0 +1,2 @@
+EB1/74445/24,Caroline,Onyango,2005-12-24,Computer Science,2,2,Active
+EB3/1234/23,Jane,Doe,2004-11-23,Applied Computer Science,2,3,Active

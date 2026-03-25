@@ -1,0 +1,17 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar"
+    ],
+
+
+
+    "mysql.connections": {
+        "host": "localhost",
+        "port": "3306",
+        "user": "srms_user",
+        "password": "Srms.149",
+        "database": "chuka_university_db"
+    }
+}
