@@ -22,6 +22,7 @@ public class TutorPanel extends JPanel {
     private JButton btnSearch;
     private JButton btnViewAll;
     private JButton btnClearForm;
+    private JButton refreshButton;
     
     // Table
     private JTable tutorTable;
@@ -33,6 +34,9 @@ public class TutorPanel extends JPanel {
     public TutorPanel() {
         tutorService = new TutorService();
         initializeUI();
+        loadTutors();
+    }
+    private void refreshTutors() {
         loadTutors();
     }
     
@@ -78,7 +82,7 @@ public class TutorPanel extends JPanel {
         panel.add(new JLabel("Department:"), gbc);
         gbc.gridx = 3;
         panel.add(txtDepartment, gbc);
-        
+
         return panel;
     }
     
@@ -92,6 +96,7 @@ public class TutorPanel extends JPanel {
         btnSearch = new JButton("Search Tutor");
         btnViewAll = new JButton("View All Tutors");
         btnClearForm = new JButton("Clear Form");
+        refreshButton = new JButton("Refresh");
         
         styleButton(btnAdd, new Color(0, 150, 0));
         styleButton(btnUpdate, new Color(0, 100, 200));
@@ -103,6 +108,8 @@ public class TutorPanel extends JPanel {
         btnSearch.addActionListener(e -> searchTutor());
         btnViewAll.addActionListener(e -> loadTutors());
         btnClearForm.addActionListener(e -> clearForm());
+        refreshButton.addActionListener(e -> refreshTutors());
+        
         
         panel.add(btnAdd);
         panel.add(btnUpdate);
@@ -110,6 +117,7 @@ public class TutorPanel extends JPanel {
         panel.add(btnSearch);
         panel.add(btnViewAll);
         panel.add(btnClearForm);
+        panel.add(refreshButton);
         
         return panel;
     }

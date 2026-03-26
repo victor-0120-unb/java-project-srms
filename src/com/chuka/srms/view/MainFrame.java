@@ -27,4 +27,8 @@ add(tabbedPane);
             new MainFrame().setVisible(true);
         });
     }
+
+    EnrollmentPanel enrollmentPanel = new EnrollmentPanel();
+    StudentPanel studentPanel = new StudentPanel(enrollmentPanel);
+    CoursePanel coursePanel = new CoursePanel(enrollmentPanel);
 }

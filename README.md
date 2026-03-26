@@ -290,3 +290,6 @@ Edit config/application.properties:
 
  # bash
  cd ~/java-project/srms/srms && mkdir -p bin && find src -name "*.java" > sources.txt && javac -cp "lib/*:src" -d bin @sources.txt && java -cp "bin:lib/*" com.chuka.srms.view.MainFrame
+
+
+### Sreenshots

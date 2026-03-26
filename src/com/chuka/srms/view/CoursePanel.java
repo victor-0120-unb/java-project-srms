@@ -22,6 +22,7 @@ public class CoursePanel extends JPanel {
     private JButton btnSearch;
     private JButton btnViewAll;
     private JButton btnClearForm;
+    private JButton refreshButton;
     
     // Table
     private JTable courseTable;
@@ -30,12 +31,49 @@ public class CoursePanel extends JPanel {
     // Service
     private CourseService courseService;
     
+    private EnrollmentPanel enrollmentPanel;
+
     public CoursePanel() {
         courseService = new CourseService();
         initializeUI();
         loadCourses();
     }
+
     
+    public CoursePanel(EnrollmentPanel enrollmentPanel) {
+        this.enrollmentPanel = enrollmentPanel;
+        courseService = new CourseService();
+        initializeUI();
+        loadCourses();
+    }
+
+
+    private void refreshCourses() {
+        loadCourses(); // refresh the course table
+
+        if (enrollmentPanel != null) {
+            reloadCourseDropdown(enrollmentPanel.getCourseComboBox());
+        }
+
+        System.out.println("Courses refreshed and enrollment dropdown updated!");
+    }
+
+
+    private void reloadCourseDropdown(JComboBox<String> comboBox) {
+        try {
+            comboBox.removeAllItems();
+            List<Course> courses = courseService.getAllCourses();
+            for (Course c : courses) {
+                comboBox.addItem(c.getCourseId() + " - " + c.getCourseName());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                "Error loading course dropdown: " + e.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     private void initializeUI() {
         setLayout(new BorderLayout(10, 10));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -94,6 +132,7 @@ public class CoursePanel extends JPanel {
         btnSearch = new JButton("Search Course");
         btnViewAll = new JButton("View All Courses");
         btnClearForm = new JButton("Clear Form");
+        refreshButton = new JButton("Refresh");
         
         // Style buttons
         styleButton(btnAdd, new Color(0, 150, 0));
@@ -107,6 +146,7 @@ public class CoursePanel extends JPanel {
         btnSearch.addActionListener(e -> searchCourse());
         btnViewAll.addActionListener(e -> loadCourses());
         btnClearForm.addActionListener(e -> clearForm());
+        refreshButton.addActionListener(e -> refreshCourses());
         
         // Add buttons to panel
         panel.add(btnAdd);
@@ -115,6 +155,7 @@ public class CoursePanel extends JPanel {
         panel.add(btnSearch);
         panel.add(btnViewAll);
         panel.add(btnClearForm);
+        panel.add(refreshButton);
         
         return panel;
     }

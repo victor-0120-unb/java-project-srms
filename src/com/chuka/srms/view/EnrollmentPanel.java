@@ -31,6 +31,7 @@ public class EnrollmentPanel extends JPanel {
     private JButton btnViewAll;
     private JButton btnClearForm;
     private JButton btnCheckLoad;
+    private JButton refreshButton;
     
     // Table
     private JTable enrollmentTable;
@@ -53,6 +54,19 @@ public class EnrollmentPanel extends JPanel {
         loadEnrollments();
         loadComboBoxes();
     }
+
+    private void refreshEnrollments() {
+        loadEnrollments();
+    }
+
+    public JComboBox<String> getStudentComboBox() {
+        return cmbStudentId;
+    }
+
+    public JComboBox<String> getCourseComboBox() {
+    return cmbCourseId;
+    }
+
     
     private void initializeUI() {
         setLayout(new BorderLayout(10, 10));
@@ -110,7 +124,7 @@ public class EnrollmentPanel extends JPanel {
         panel.add(new JLabel("Enrollment Date (YYYY-MM-DD):"), gbc);
         gbc.gridx = 3;
         panel.add(txtEnrollmentDate, gbc);
-        
+
         return panel;
     }
     
@@ -125,6 +139,7 @@ public class EnrollmentPanel extends JPanel {
         btnViewAll = new JButton("View All");
         btnClearForm = new JButton("Clear Form");
         btnCheckLoad = new JButton("Check Course Load");
+        refreshButton = new JButton("Refresh");
         
         styleButton(btnAdd, new Color(0, 150, 0));
         styleButton(btnUpdate, new Color(0, 100, 200));
@@ -138,6 +153,7 @@ public class EnrollmentPanel extends JPanel {
         btnViewAll.addActionListener(e -> loadEnrollments());
         btnClearForm.addActionListener(e -> clearForm());
         btnCheckLoad.addActionListener(e -> checkCourseLoad());
+        refreshButton.addActionListener(e -> refreshEnrollments());
         
         panel.add(btnAdd);
         panel.add(btnUpdate);
@@ -146,6 +162,7 @@ public class EnrollmentPanel extends JPanel {
         panel.add(btnViewAll);
         panel.add(btnClearForm);
         panel.add(btnCheckLoad);
+        panel.add(refreshButton);
         
         return panel;
     }

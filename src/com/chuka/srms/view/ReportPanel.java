@@ -28,6 +28,7 @@ public class ReportPanel extends JPanel {
     private JButton btnGenerateProbationReport;
     private JButton btnClear;
     private JButton btnCopy;
+    private JButton refreshButton;
     
     public ReportPanel() {
         reportService = new ReportService();
@@ -37,6 +38,11 @@ public class ReportPanel extends JPanel {
         initializeUI();
         loadComboBoxes();
     }
+
+    private void refreshReports() {
+        loadComboBoxes();
+    }
+
     
     private void initializeUI() {
         setLayout(new BorderLayout(10, 10));
@@ -72,7 +78,8 @@ public class ReportPanel extends JPanel {
         btnGenerateProbationReport = new JButton("Students on Probation Report");
         btnClear = new JButton("Clear");
         btnCopy = new JButton("Copy to Clipboard");
-        
+        refreshButton = new JButton("Refresh");
+
         // Style buttons
         styleButton(btnGenerateTranscript, new Color(0, 100, 200));
         styleButton(btnGenerateCourseReport, new Color(0, 100, 200));
@@ -90,6 +97,7 @@ public class ReportPanel extends JPanel {
         btnGenerateProbationReport.addActionListener(e -> generateProbationReport());
         btnClear.addActionListener(e -> reportArea.setText(""));
         btnCopy.addActionListener(e -> copyToClipboard());
+        refreshButton.addActionListener(e -> refreshReports());
         
         // Layout
         // Row 0: Student Transcript
@@ -153,7 +161,7 @@ public class ReportPanel extends JPanel {
         panel.add(btnClear, gbc);
         gbc.gridx = 1;
         panel.add(btnCopy, gbc);
-        
+
         return panel;
     }
     

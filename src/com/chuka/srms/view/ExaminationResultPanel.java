@@ -35,6 +35,7 @@ public class ExaminationResultPanel extends JPanel {
     private JButton btnViewAll;
     private JButton btnClearForm;
     private JButton btnCalculateGrade;
+    private JButton refreshButton;
     
     // Table
     private JTable resultTable;
@@ -55,6 +56,11 @@ public class ExaminationResultPanel extends JPanel {
         loadResults();
         loadEnrollments();
     }
+
+    private void refreshResults() {
+        loadResults();
+    }
+
     
     private void initializeUI() {
         setLayout(new BorderLayout(10, 10));
@@ -131,6 +137,8 @@ public class ExaminationResultPanel extends JPanel {
         panel.add(new JLabel("Year:"), gbc);
         gbc.gridx = 3;
         panel.add(txtYear, gbc);
+
+        
         
         // Add listener to update info when enrollment changes
         cmbEnrollment.addActionListener(e -> updateEnrollmentInfo());
@@ -169,6 +177,7 @@ public class ExaminationResultPanel extends JPanel {
         btnViewAll = new JButton("View All");
         btnClearForm = new JButton("Clear Form");
         btnCalculateGrade = new JButton("Calculate Grade");
+        refreshButton = new JButton("Refresh");
         
         styleButton(btnAdd, new Color(0, 150, 0));
         styleButton(btnUpdate, new Color(0, 100, 200));
@@ -182,6 +191,7 @@ public class ExaminationResultPanel extends JPanel {
         btnViewAll.addActionListener(e -> loadResults());
         btnClearForm.addActionListener(e -> clearForm());
         btnCalculateGrade.addActionListener(e -> calculateGrade());
+        refreshButton.addActionListener(e -> refreshResults());
         
         panel.add(btnAdd);
         panel.add(btnUpdate);
@@ -190,6 +200,7 @@ public class ExaminationResultPanel extends JPanel {
         panel.add(btnViewAll);
         panel.add(btnClearForm);
         panel.add(btnCalculateGrade);
+        panel.add(refreshButton);
         
         return panel;
     }

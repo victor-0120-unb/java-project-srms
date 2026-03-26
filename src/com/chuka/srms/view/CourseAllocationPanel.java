@@ -31,6 +31,7 @@ public class CourseAllocationPanel extends JPanel {
     private JButton btnSearch;
     private JButton btnViewAll;
     private JButton btnClearForm;
+    private JButton refreshButton;
     
     // Table
     private JTable allocationTable;
@@ -49,6 +50,11 @@ public class CourseAllocationPanel extends JPanel {
         loadAllocations();
         loadComboBoxes();
     }
+
+    private void refreshAllocations() {
+        loadAllocations();
+    }
+
     
     private void initializeUI() {
         setLayout(new BorderLayout(10, 10));
@@ -166,6 +172,7 @@ public class CourseAllocationPanel extends JPanel {
         btnSearch = new JButton("Search");
         btnViewAll = new JButton("View All");
         btnClearForm = new JButton("Clear Form");
+        refreshButton = new JButton("Refresh");
         
         styleButton(btnAdd, new Color(0, 150, 0));
         styleButton(btnUpdate, new Color(0, 100, 200));
@@ -177,6 +184,7 @@ public class CourseAllocationPanel extends JPanel {
         btnSearch.addActionListener(e -> searchAllocation());
         btnViewAll.addActionListener(e -> loadAllocations());
         btnClearForm.addActionListener(e -> clearForm());
+        refreshButton.addActionListener(e -> refreshAllocations());
         
         panel.add(btnAdd);
         panel.add(btnUpdate);
@@ -184,6 +192,7 @@ public class CourseAllocationPanel extends JPanel {
         panel.add(btnSearch);
         panel.add(btnViewAll);
         panel.add(btnClearForm);
+        panel.add(refreshButton);
         
         return panel;
     }
